@@ -5,10 +5,18 @@ using UnityEngine.SceneManagement; // libreria di unity che permette il campio d
 
 public class LevelManager : MonoBehaviour
 {
+    ScoreKeeper scoreKeeper;
+
+    void Awake()
+    {
+        scoreKeeper = FindObjectOfType<ScoreKeeper>(); // cerca il primo oggetto della classe ScoreKeeper e lo mette dentro la variabile scoreKeeper
+    }
+
     [SerializeField] float sceneLoadDelay = 0.5f; // variabile che imposta un delay tra il cambio di una scena e l'altra
     public void LoadGame() // metodo che carica la scena "The Game", il gioco vero e proprio
     {
         SceneManager.LoadScene("TheGame");
+        scoreKeeper.ResetScore();
     }
 
     public void LoadMainMenu() // metodo che carica la scena "MainMenu", il menù iniziale
